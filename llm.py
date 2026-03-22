@@ -2,7 +2,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
-print(os.getenv("GROQ_API_KEY"))
+# print(os.getenv("GROQ_API_KEY"))
 
 load_dotenv()
 
@@ -20,6 +20,8 @@ def generate_sql(prompt):
             {"role": "user", "content": prompt}
         ]
         )
+        print("LLM connected")
         return response.choices[0].message.content
     except Exception as e:
         return f"Error: {str(e)}"
+    

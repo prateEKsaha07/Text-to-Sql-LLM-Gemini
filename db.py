@@ -11,10 +11,11 @@ def run_query(query):
         cursor.execute(query)
         rows = cursor.fetchall()
         columns = [desc[0] for desc in cursor.description]
-        return rows, columns
+        return rows, columns, None
     except Exception as e:
-        return str(e), None
+        return None, None, str(e)
     finally:
+        print("got the query")
         conn.close()
 
 def get_schema():
@@ -36,5 +37,6 @@ def get_schema():
             schema += f"- {column[1]}({column[2]})\n"
 
     conn.close()
+    print("got the Schema")
     return schema
 

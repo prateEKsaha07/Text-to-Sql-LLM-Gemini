@@ -3,6 +3,7 @@ from llm import generate_sql
 from create_prompt import get_prompt
 from db import run_query, get_schema
 import pandas as pd
+from create_prompt import fix_sql_prompt
 
 schema = get_schema()
 
@@ -15,17 +16,39 @@ if st.button("Generate"):
     sql_query = generate_sql(prompt)
     st.code(sql_query, language="sql")
 
-    if "I DON'T KNOW" in sql_query: # type: ignore
+    if "I DON'T KNOW" in sql_query:
         st.warning("Query not related to database") 
-    else:
-        rows, cols = run_query(sql_query)
-        if isinstance(rows, str):
-            st.error(rows)
+    
 
+    else:
+        rows, cols, error = run_query(sql_query)
+
+        if error:
+            st.warning("Query failed, trying to fix...")
+            fix_prompt = fix_sql_prompt(user_input, schema, sql_query, error)
+            fixed_sql = generate_sql(fix_prompt)
+
+            st.code(fixed_sql, language="sql")
+
+
+            rows, cols, error = run_query(fixed_sql)
+        if error:
+            st.error(error)
         else:
             if not rows:
                 st.warning("No results found")
-
             else:
                 df = pd.DataFrame(rows, columns=cols)
                 st.dataframe(df)
+                
+        # rows, cols = run_query(sql_query)
+        # if isinstance(rows, str):
+        #     st.error(rows)
+
+        # else:
+        #     if not rows:
+        #         st.warning("No results found")
+
+        #     else:
+        #         df = pd.DataFrame(rows, columns=cols)
+        #         st.dataframe(df)
