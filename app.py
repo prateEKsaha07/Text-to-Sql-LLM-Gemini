@@ -54,6 +54,8 @@ if user_input:
                 if rows:
                     df = pd.DataFrame(rows,columns=cols)
                     st.dataframe(df)
+                    if len(df.columns) == 2:
+                        st.bar_chart(df.set_index(df.columns[0]))
                 else:
                     st.warning("no results found")
     # save responses
@@ -63,7 +65,7 @@ if user_input:
     })
 
 
-
+# old v2
 
 # if st.button("Generate"):
 #     prompt = get_prompt(user_input, schema)
@@ -94,7 +96,8 @@ if user_input:
 #             else:
 #                 df = pd.DataFrame(rows, columns=cols)
 #                 st.dataframe(df)
-                
+
+# old v1 
         # rows, cols = run_query(sql_query)
         # if isinstance(rows, str):
         #     st.error(rows)
