@@ -1,8 +1,11 @@
-def get_prompt(user_input):
+def get_prompt(user_input,schema):
     return f"""
     You are an expert SQL generator.
 
     Convert the following natural language into a valid SQLite query.
+    
+    Database Schema:
+    {schema}
 
     Rules:
     - Only return SQL query
