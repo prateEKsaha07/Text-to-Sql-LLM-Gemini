@@ -42,7 +42,7 @@ courses = ["Math", "Science", "CS", "English"]
 for i in range(50):
     cursor.execute(
         "INSERT INTO courses (course_name, student_id) VALUES (?, ?)",
-        (random.choice(courses), random.randint(1, 10))
+        (random.choice(courses), random.randint(1, 50))
     )
 
 conn.commit()

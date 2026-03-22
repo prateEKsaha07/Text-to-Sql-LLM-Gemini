@@ -39,4 +39,3 @@ def get_schema():
     conn.close()
     print("got the Schema")
     return schema
-
