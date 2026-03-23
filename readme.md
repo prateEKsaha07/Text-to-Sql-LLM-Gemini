@@ -38,11 +38,17 @@ Built using Groq (LLaMA 3) initially id it was googles genai but changed the LLM
 ## Project Structure
 
 ├── app.py # Main Streamlit app
+
 ├── llm.py # LLM (Groq) integration
+
 ├── db.py # Database connection & query execution
+
 ├── create_prompt.py # Prompt engineering
+
 ├── sample_database.py # Database creation & sample data
+
 ├── .env # API keys (not included in repo)
+
 ├── requirements.txt
 
 ---
@@ -52,6 +58,7 @@ Built using Groq (LLaMA 3) initially id it was googles genai but changed the LLM
 ### 1. Clone the repository
 
 git clone https://github.com/your-username/text-to-sql-llm.git
+
 cd text-to-sql-llm
 
 ---
@@ -59,6 +66,7 @@ cd text-to-sql-llm
 ### 2. Create virtual environment
 
 python -m venv venv
+
 venv\Scripts\activate # Windows
 
 ---
@@ -72,6 +80,7 @@ pip install -r requirements.txt
 ### 4. Add API Key
 
 Create a `.env` file:
+
 GROQ_API_KEY=your_api_key_here
 
 ---
