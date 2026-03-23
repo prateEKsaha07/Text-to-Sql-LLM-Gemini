@@ -8,7 +8,8 @@ Database Schema:
 Rules:
 - Only return SQL
 - Use SQLite syntax
-- If not possible, return: I DON'T KNOW
+- If unsure or not related to schema, return: I DON'T KNOW
+- Do NOT guess table or column names
 
 User Question:
 {user_input}"""
